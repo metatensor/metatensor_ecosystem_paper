@@ -32,10 +32,10 @@ use rule * from ase_idpp as __ase_idpp_*
 use rule * from get_petmad
 
 
-use rule run_eon from run_eon
+use rule * from run_eon
 
 
-rule doneb:
+rule fakeplot:
     input:
         expand("results/pet-mad-{version}.pt", version=config["pet_mad"]["version"]),
     output:
@@ -48,5 +48,5 @@ rule all:
     input:
         rules.__ase_idpp_collect_paths.output,
         "results/plots/.gitkeep",
-        rules.run_eon.output,
+        rules.do_neb.output,
     default_target: True

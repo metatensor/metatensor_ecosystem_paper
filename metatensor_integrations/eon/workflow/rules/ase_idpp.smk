@@ -8,8 +8,8 @@ from ase.mep import NEB
 # It explicitly declares ALL of its outputs so the DAG is complete.
 rule generate_idpp_images:
     input:
-        reactant=config["reactant_file"],
-        product=config["product_file"],
+        reactant="results/reactant.con",
+        product="results/product.con",
     output:
         # We declare all N+2 output files that will be generated.
         expand(
