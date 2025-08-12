@@ -39,15 +39,6 @@ cd results/03_neb
 python -m rgpycrumbs.cli eon plt_neb --con-file neb.con --plot-structures "crit_points" --facecolor "floralwhite"
 #+end_src
 
-** Additional visual aids
-All the graphs can be re-generated via:
-#+begin_src bash
-pixi r all-graphs
-#+end_src
-*** Filegraph
-[[file:resources/filegraph.svg]]
-*** Rulegraph
-[[file:resources/rulegraph.svg]]
 ** References
 #+begin_quote
 [1] R. Goswami, M. Masterov, S. Kamath, A. Pena-Torres, and H. Jónsson, “Efficient Implementation of Gaussian Process Regression Accelerated Saddle Point Searches with Application to Molecular Reactions,” J. Chem. Theory Comput., Jul. 2025, doi: 10.1021/acs.jctc.5c00866.
@@ -58,3 +49,13 @@ pixi r all-graphs
 
 [4] O.-P. Koistinen, V. Ásgeirsson, A. Vehtari, and H. Jónsson, “Minimum Mode Saddle Point Searches Using Gaussian Process Regression with Inverse-Distance Covariance Function,” J. Chem. Theory Comput., vol. 16, no. 1, pp. 499–509, Jan. 2020, doi: 10.1021/acs.jctc.9b01038.
 #+end_quote
+
+** Additional visual aids
+All the graphs can be re-generated via:
+#+begin_src bash
+pixi r all-graphs
+#+end_src
+*** Filegraph
+[[file:resources/filegraph.svg]]
+*** Rulegraph
+[[file:resources/rulegraph.svg]]
