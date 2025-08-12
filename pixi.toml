@@ -17,11 +17,17 @@ cmd = "cd {{ _cwd }} && snakemake -F --rulegraph | dot -Tsvg > resources/rulegra
 args = ["_cwd"]
 cmd = "cd {{ _cwd }} && snakemake -F --filegraph | dot -Tsvg > resources/filegraph.svg"
 
+[tasks.graphs]
+args = ["_cwd"]
+depends-on = [
+  { task = "dag", args = ["{{ _cwd }}"] },
+  { task = "rulegraph", args = ["{{ _cwd }}"] },
+  { task = "filegraph", args = ["{{ _cwd }}"] },
+]
+
 [tasks.all-graphs]
 depends-on = [
-  { task = "dag", environment = "eon", args = ["metatensor_integrations/eon"] },
-  { task = "rulegraph", environment = "eon", args = ["metatensor_integrations/eon"] },
-  { task = "filegraph", environment = "eon", args = ["metatensor_integrations/eon"] },
+  { task = "graphs", environment = "eon", args = ["metatensor_integrations/eon"] },
 ]
 
 [dependencies]
