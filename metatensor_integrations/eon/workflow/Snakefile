@@ -26,6 +26,13 @@ module run_eon:
         config
 
 
+module plotting:
+    snakefile:
+        "rules/plotting.smk"
+    config:
+        config
+
+
 use rule * from ase_idpp as __ase_idpp_*
 
 
@@ -35,18 +42,10 @@ use rule * from get_petmad
 use rule * from run_eon
 
 
-rule fakeplot:
-    input:
-        expand("results/pet-mad-{version}.pt", version=config["pet_mad"]["version"]),
-    output:
-        "results/plots/.gitkeep",
-    run:
-        shell("mkdir -p results/plots && touch results/plots/.gitkeep")
+use rule plot_neb_path from plotting
 
 
 rule all:
     input:
-        rules.__ase_idpp_collect_paths.output,
-        "results/plots/.gitkeep",
-        rules.do_neb.output,
+        rules.plot_neb_path.output,
     default_target: True

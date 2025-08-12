@@ -13,4 +13,5 @@ python -m rgpycrumbs.cli eon plt_neb \
     --con-file neb.con \
     --plot-structures "crit_points" \
     --facecolor "floralwhite"
+# Or view results/plots/neb_paths.png
 #+end_src

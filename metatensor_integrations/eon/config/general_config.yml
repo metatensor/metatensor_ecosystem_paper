@@ -7,3 +7,7 @@ eon:
   num_steps: 28
 pet_mad:
   version: "v1.1.0"
+plotting:
+  plot_structures: "crit_points"
+  facecolor: "floralwhite"
+  title: "NEB Energy Profile"
