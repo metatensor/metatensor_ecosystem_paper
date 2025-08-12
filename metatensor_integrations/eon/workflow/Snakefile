@@ -14,10 +14,20 @@ module ase_idpp:
         config["common"]
 
 
+module get_petmad:
+    snakefile:
+        "rules/get_petmad.smk"
+
+
 use rule * from ase_idpp as __ase_idpp_*
 
 
+use rule * from get_petmad
+
+
 rule doneb:
+    input:
+        expand("results/pet-mad-{version}.pt", version=config["pet_mad"]["version"]),
     output:
         "results/plots/.gitkeep",
     run:
