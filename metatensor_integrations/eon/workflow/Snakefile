@@ -1,0 +1,30 @@
+# -*- mode:snakemake; -*-
+from snakemake.utils import min_version
+
+min_version("6.0")
+
+
+module ase_idpp:
+    snakefile:
+        "rules/ase_idpp.smk"
+    # prefix:
+    #     "ipath"
+
+
+use rule ase_idpp from ase_idpp as __ase_idpp with:
+    input:
+        product="resources/product.con",
+        reactant="resources/reactant.con",
+
+rule doneb:
+    output:
+        "results/plots/.gitkeep"
+    run:
+        shell("mkdir -p results/plots && touch results/plots/.gitkeep")
+
+
+rule all:
+    input:
+        rules.__ase_idpp.output,
+        "results/plots/.gitkeep",
+    default_target: True
