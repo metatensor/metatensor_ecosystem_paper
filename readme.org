@@ -15,8 +15,8 @@ Everything is part of the repository, but ~eOn~ needs to be installed.
 #+begin_src bash
 pixi s -e eon
 cd subrepos/eOn
-meson setup --reconfigure bbdir --prefix=$CONDA_PREFIX -Dwith_metatomic=True
--Dpip_metatomic=True -Dtorch_version=2.7 -Dwith_xtb=True --buildtype release --libdir=lib
+meson setup --reconfigure bbdir --prefix=$CONDA_PREFIX -Dwith_metatomic=True \
+    -Dpip_metatomic=True -Dtorch_version=2.7 --buildtype release --libdir=lib
 meson install -C bbdir
 #+end_src
 Now everything is ready for reproduction. Several ~pixi~ groups are defined to
