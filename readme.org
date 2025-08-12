@@ -1,40 +1,23 @@
 * About
 A reproducible setup for generating figures within the Metatensor showcase
-paper. Conceptually similar to the reproduction done for [1, 2] on Github ([[https://github.com/TheochemUI/gpr_sella_repro][1]], [[https://github.com/HaoZeke/brms_idrot_repro][2]]).
-** Workflows
-We use ~snakemake~ for the following sections [fn:: Some of these are inspired by the workflows of [[https://github.com/amritagos][amritagos]]]:
-*** TODO EON
-**** TODO Energy weighted springs with MMF-NEB (RO-NEB)
-As implemented from [2] [[https://github.com/TheochemUI/eOn/pull/77][in EON]] (also [[https://github.com/TheochemUI/eOn/pull/230][here]]), using systems from [3].
+paper.
+** Sections
+*** DONE EON
+CLOSED: [2025-08-12 Tue 14:10]
+**** DONE Energy weighted springs with MMF-NEB (RO-NEB)
+CLOSED: [2025-08-12 Tue 14:10]
+As implemented from [1] [[https://github.com/TheochemUI/eOn/pull/77][in EON]] (also [[https://github.com/TheochemUI/eOn/pull/230][here]]), using systems from [2].
 - ASE is used to generate an initial IDPP path
 *** TODO PLUMED
 **** TODO LJ-38 free energy surface
-Using a [[https://atomistic-cookbook.org/examples/metatomic-plumed/metatomic-plumed.html#histogram-of-coordination-numbers][histogram of coordination number]] based collective variable [4].
-** Setup
-Everything is part of the repository, but ~eOn~ needs to be installed.
-#+begin_src bash
-pixi s -e eon
-cd subrepos/eOn
-meson setup --reconfigure bbdir --prefix=$CONDA_PREFIX -Dwith_metatomic=True \
-    -Dpip_metatomic=True -Dtorch_version=2.7 --buildtype release --libdir=lib
-meson install -C bbdir
-#+end_src
-Now everything is ready for reproduction. Several ~pixi~ groups are defined to
-ensure minimal conflits. *None of these contain* ~eOn~ so the instructions above
-need to be followed for each environment where it is necessary.
-*** Development
-~git-subrepo~ is used to handle the vendored dependencies.
+Using a [[https://atomistic-cookbook.org/examples/metatomic-plumed/metatomic-plumed.html#histogram-of-coordination-numbers][histogram of coordination number]] based collective variable [3].
 ** References
 #+begin_quote
-[1] R. Goswami, M. Masterov, S. Kamath, A. Pena-Torres, and H. Jónsson, “Efficient Implementation of Gaussian Process Regression Accelerated Saddle Point Searches with Application to Molecular Reactions,” J. Chem. Theory Comput., Jul. 2025, doi: 10.1021/acs.jctc.5c00866.
+[1] V. Ásgeirsson et al., “Nudged Elastic Band Method for Molecular Reactions Using Energy-Weighted Springs Combined with Eigenvector Following,” J. Chem. Theory Comput., vol. 17, no. 8, pp. 4929–4945, Aug. 2021, doi: 10.1021/acs.jctc.1c00462.
 
-[2] R. Goswami, “Bayesian hierarchical models for quantitative estimates for performance metrics applied to saddle search algorithms,” AIP Adv., vol. 15, no. 8, p. 85210, Aug. 2025, doi: 10.1063/5.0283639.
+[2] O.-P. Koistinen, V. Ásgeirsson, A. Vehtari, and H. Jónsson, “Minimum Mode Saddle Point Searches Using Gaussian Process Regression with Inverse-Distance Covariance Function,” J. Chem. Theory Comput., vol. 16, no. 1, pp. 499–509, Jan. 2020, doi: 10.1021/acs.jctc.9b01038.
 
-[3] V. Ásgeirsson et al., “Nudged Elastic Band Method for Molecular Reactions Using Energy-Weighted Springs Combined with Eigenvector Following,” J. Chem. Theory Comput., vol. 17, no. 8, pp. 4929–4945, Aug. 2021, doi: 10.1021/acs.jctc.1c00462.
-
-[4] O.-P. Koistinen, V. Ásgeirsson, A. Vehtari, and H. Jónsson, “Minimum Mode Saddle Point Searches Using Gaussian Process Regression with Inverse-Distance Covariance Function,” J. Chem. Theory Comput., vol. 16, no. 1, pp. 499–509, Jan. 2020, doi: 10.1021/acs.jctc.9b01038.
-
-[5] M. Ceriotti, G. A. Tribello, and M. Parrinello, “Demonstrating the transferability and the descriptive power of sketch-map,” J. Chem. Theory Comput., vol. 9, no. 3, pp. 1521–1532, Mar. 2013, doi: 10.1021/ct3010563.
+[3] M. Ceriotti, G. A. Tribello, and M. Parrinello, “Demonstrating the transferability and the descriptive power of sketch-map,” J. Chem. Theory Comput., vol. 9, no. 3, pp. 1521–1532, Mar. 2013, doi: 10.1021/ct3010563.
 #+end_quote
 * License
 MIT
