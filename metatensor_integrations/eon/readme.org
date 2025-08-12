@@ -1,5 +1,6 @@
 * About
 This is for the oxadiazole NEB example. Basically the steps being automated are:
+- Obtain PET-MAD
 - Minimize endpoints (EON)
 - Generate IDPP path (ASE)
 - Run EON's MMF-NEB (RO-NEB)
