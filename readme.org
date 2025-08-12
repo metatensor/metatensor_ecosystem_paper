@@ -19,5 +19,10 @@ Using a [[https://atomistic-cookbook.org/examples/metatomic-plumed/metatomic-plu
 
 [3] M. Ceriotti, G. A. Tribello, and M. Parrinello, “Demonstrating the transferability and the descriptive power of sketch-map,” J. Chem. Theory Comput., vol. 9, no. 3, pp. 1521–1532, Mar. 2013, doi: 10.1021/ct3010563.
 #+end_quote
+** FAQ
+*** What's with the contributors list?
+For maximum reproducibility, core tools are *vendored* with [[https://github.com/ingydotnet/git-subrepo][git-subrepo]]. This ensures (unlike submodules) that upstream changes cannot break downstream dependents.
+
+However, it does create an inflated (but not technically incorrect) history. For the current contributors, consult the ~CODEOWNERS~ file.
 * License
 MIT

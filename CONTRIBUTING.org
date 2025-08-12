@@ -12,3 +12,8 @@ For *authors*, the following guidelines should be followed:
 - The contents of the folder can be anything, as long as they can be used to reproducibly generate the figure
   + ~snakemake~ + custom ~pixi~ environments are an idea
     + As seen in the figures for ~eon~ and ~plumed~
+
+** Miscellaneous notes
+If there are repositories used without fixed releases (e.g. personal tools) or
+software which may suffer from catastrophic renaming / rebases, consider using
+[[https://github.com/ingydotnet/git-subrepo][git-subrepo]] and *vendoring* into ~subrepos~.
