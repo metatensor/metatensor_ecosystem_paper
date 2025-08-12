@@ -1,2 +1,16 @@
 * About
-This is for the oxadiazole NEB example.
+This is for the oxadiazole NEB example. Basically:
+- Minimize endpoints (EON)
+- Generate IDPP path (ASE)
+- Run EON's MMF-NEB (RO-NEB)
+- Plot
+** Usage
+#+begin_src bash
+pixi s -e eon
+snakemake -c4
+cd results
+python -m rgpycrumbs.cli eon plt_neb \
+    --con-file neb.con \
+    --plot-structures "crit_points" \
+    --facecolor "floralwhite"
+#+end_src
