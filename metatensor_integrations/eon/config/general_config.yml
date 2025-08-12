@@ -16,7 +16,7 @@ pet_mad:
 plotting:
   plot_structures: "crit_points"
   facecolor: "floralwhite"
-  title: ""
+  title: "NEB Path Optimization"
   draw_reactant:
     x: 30.0
     y: 60.0
@@ -34,4 +34,4 @@ plotting:
     dpi: 300
     zoom_ratio: 0.25
   fonts:
-    base: 14
+    base: 12
