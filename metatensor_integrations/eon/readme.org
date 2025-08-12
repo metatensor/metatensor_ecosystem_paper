@@ -24,13 +24,13 @@ need to be followed for each environment where it is necessary.
 ** Usage
 #+begin_src bash
 pixi s -e eon
-snakemake -c4
-cd results
-python -m rgpycrumbs.cli eon plt_neb \
-    --con-file neb.con \
-    --plot-structures "crit_points" \
-    --facecolor "floralwhite"
-# Or view results/plots/04_plots/roneb.png
+snakemake -c4 # or c1
+# View results/plots/04_plots/roneb.png
+#+end_src
+If faster experimental visualization is required (compared to editing the ~config/general_config.yaml~) then the ~results~ can be used directly:
+#+begin_src bash
+cd results/03_neb
+python -m rgpycrumbs.cli eon plt_neb --con-file neb.con --plot-structures "crit_points" --facecolor "floralwhite"
 #+end_src
 
 ** References
