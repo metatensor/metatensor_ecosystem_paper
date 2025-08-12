@@ -1,35 +1,51 @@
 # -*- mode:snakemake; -*-
 
+import ase.io
+from ase.mep import NEB
 
-rule ase_idpp:
+
+# This rule performs the expensive interpolation once and writes all image files.
+# It explicitly declares ALL of its outputs so the DAG is complete.
+rule generate_idpp_images:
     input:
-        reactant="resources/reactant.con",
-        product="resources/product.con",
-    params:
-        niimgs=10,  #config["number_of_intermediate_imgs"],
-        plfname="idppPath.dat",
-    log:
-        "logs/ase_idpp.log",
+        reactant=config["reactant_file"],
+        product=config["product_file"],
     output:
-        ipath="results/idppPath.dat",
+        # We declare all N+2 output files that will be generated.
+        expand(
+            "results/path/{num:02d}.con",
+            num=range(config["number_of_intermediate_imgs"] + 2),
+        ),
+    params:
+        niimgs=config["number_of_intermediate_imgs"],
     run:
-        import ase.io
-        from ase.mep import NEB
-        from pathlib import Path
-
         react = ase.io.read(input.reactant)
         prod = ase.io.read(input.product)
+
+        # Create the list of images in memory
         images = [react]
         images += [react.copy() for i in range(params.niimgs)]
         images += [prod]
+
         neb = NEB(images)
         neb.interpolate("idpp")
-        gen_paths = []
-        for num, img in enumerate(images):
-            fname = f"results/{num:02d}_path.con"
-            ase.io.write(fname, img)
-            gen_paths.append(Path(fname).resolve())
 
-        with open(output.ipath, "w") as f:
-            for path in gen_paths:
-                f.write(f"{path}\n")
+        # Write each image to its corresponding, declared output file
+        # The zip function ensures we match the correct image to the correct output path
+        for outfile, img in zip(output, images):
+            ase.io.write(outfile, img)
+
+
+# Summary file for EON to use
+rule collect_paths:
+    input:
+        # Depends on the output of the rule above.
+        expand(
+            "results/path/{num:02d}.con",
+            num=range(config["number_of_intermediate_imgs"] + 2),
+        ),
+    output:
+        "results/idppPath.dat",
+    shell:
+        # List the absolute paths of the inputs.
+        "realpath {input} > {output}"

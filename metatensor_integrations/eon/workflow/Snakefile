@@ -4,27 +4,28 @@ from snakemake.utils import min_version
 min_version("6.0")
 
 
+configfile: "config/general_config.yml"  # Path to config file containing general variables, relative to the workflow folder
+
+
 module ase_idpp:
     snakefile:
         "rules/ase_idpp.smk"
-    # prefix:
-    #     "ipath"
+    config:
+        config["common"]
 
 
-use rule ase_idpp from ase_idpp as __ase_idpp with:
-    input:
-        product="resources/product.con",
-        reactant="resources/reactant.con",
+use rule * from ase_idpp as __ase_idpp_*
+
 
 rule doneb:
     output:
-        "results/plots/.gitkeep"
+        "results/plots/.gitkeep",
     run:
         shell("mkdir -p results/plots && touch results/plots/.gitkeep")
 
 
 rule all:
     input:
-        rules.__ase_idpp.output,
+        rules.__ase_idpp_collect_paths.output,
         "results/plots/.gitkeep",
     default_target: True
