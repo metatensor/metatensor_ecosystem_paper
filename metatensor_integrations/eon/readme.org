@@ -5,7 +5,12 @@ This is for the oxadiazole NEB example. Basically the steps being automated are:
 - Generate IDPP path (ASE)
 - Run EON's MMF-NEB (RO-NEB)
 - Plot
-Conceptually similar to the reproduction done for [1, 2] on Github ([[https://github.com/TheochemUI/gpr_sella_repro][1]], [[https://github.com/HaoZeke/brms_idrot_repro][2]]). We use ~snakemake~ for this section[fn:: Some of these are inspired by the workflows of [[https://github.com/amritagos][amritagos]]].
+Conceptually similar to the reproduction done for [1, 2] on Github ([[https://github.com/TheochemUI/gpr_sella_repro][1]], [[https://github.com/HaoZeke/brms_idrot_repro][2]]). We
+use ~snakemake~ for this section[fn:: Some of these are inspired by the
+workflows of [[https://github.com/amritagos][amritagos]]].
+
+#+caption: DAG for the workflow
+[[file:resources/dag.svg]]
 
 Essentially this is as implemented from [3] [[https://github.com/TheochemUI/eOn/pull/77][in EON]] (also [[https://github.com/TheochemUI/eOn/pull/230][here]]), using systems from [4].
 ** Setup
@@ -34,6 +39,15 @@ cd results/03_neb
 python -m rgpycrumbs.cli eon plt_neb --con-file neb.con --plot-structures "crit_points" --facecolor "floralwhite"
 #+end_src
 
+** Additional visual aids
+All the graphs can be re-generated via:
+#+begin_src bash
+pixi r all-graphs
+#+end_src
+*** Filegraph
+[[file:resources/filegraph.svg]]
+*** Rulegraph
+[[file:resources/rulegraph.svg]]
 ** References
 #+begin_quote
 [1] R. Goswami, M. Masterov, S. Kamath, A. Pena-Torres, and H. Jónsson, “Efficient Implementation of Gaussian Process Regression Accelerated Saddle Point Searches with Application to Molecular Reactions,” J. Chem. Theory Comput., Jul. 2025, doi: 10.1021/acs.jctc.5c00866.
