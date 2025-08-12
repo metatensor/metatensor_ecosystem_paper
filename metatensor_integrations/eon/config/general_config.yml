@@ -1,0 +1,8 @@
+common:
+  number_of_intermediate_imgs: 10
+  reactant_file: "resources/reactant.con"
+  product_file: "resources/product.con"
+eon:
+  config: "resources/config.ini"
+pet_mad:
+  version: "v1.1.0"
