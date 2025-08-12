@@ -16,7 +16,7 @@ metatrain = ">=2025.8.1, <2026"
 metatensor-torch = ">=0.7.6, <0.8"
 metatomic-torch = ">=0.1.3, <0.2"
 ase = ">=3.25.0, <4"
-rgpycrumbs = { git = "https://github.com/HaoZeke/rgpycrumbs" }
+rgpycrumbs = { path = "./subrepos/rgpycrumbs", editable=true }
 
 [feature.eon.dependencies]
 eigen = ">=3.4.0,<4"
