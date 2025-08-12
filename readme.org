@@ -23,9 +23,7 @@ Now everything is ready for reproduction. Several ~pixi~ groups are defined to
 ensure minimal conflits. *None of these contain* ~eOn~ so the instructions above
 need to be followed for each environment where it is necessary.
 *** Development
-~josh-filter~ is used to maintain the state of the vendored sub-repos. In
-particular, the workflow mimicing ~git-subrepo~ as described briefly in this
-snippet.
+~git-subrepo~ is used to handle the vendored dependencies.
 ** References
 #+begin_quote
 [1] R. Goswami, M. Masterov, S. Kamath, A. Pena-Torres, and H. Jónsson, “Efficient Implementation of Gaussian Process Regression Accelerated Saddle Point Searches with Application to Molecular Reactions,” J. Chem. Theory Comput., Jul. 2025, doi: 10.1021/acs.jctc.5c00866.
