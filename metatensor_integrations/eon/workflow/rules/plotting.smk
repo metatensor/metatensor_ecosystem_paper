@@ -4,7 +4,6 @@ rule plot_neb_path:
     input:
         con="results/neb.con",
         dat_files=expand("results/neb_{num:03d}.dat", num=range(config["eon"]["num_steps"])),
-        path_files=expand("results/neb_path_{num:03d}.con", num=range(config["eon"]["num_steps"])),
     output:
         plot="results/plots/neb_path.png",
     params:

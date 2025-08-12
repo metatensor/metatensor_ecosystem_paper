@@ -35,14 +35,9 @@ rule do_neb:
         reactant=config["common"]["reactant_file"],
         product=config["common"]["product_file"],
     output:
-        results_dat="results/results.dat",
         neb_con="results/neb.con",
-        neb_max_con="results/neb_maximage.con",
         all_neb_dat=expand(
             "results/neb_{num:03d}.dat", num=range(config["eon"]["num_steps"])
-        ),
-        all_neb_path_con=expand(
-            "results/neb_path_{num:03d}.con", num=range(config["eon"]["num_steps"])
         ),
     shadow:
         "minimal"
