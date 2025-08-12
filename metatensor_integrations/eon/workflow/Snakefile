@@ -11,12 +11,14 @@ module ase_idpp:
     snakefile:
         "rules/ase_idpp.smk"
     config:
-        config["common"]
+        config
 
 
 module get_petmad:
     snakefile:
         "rules/get_petmad.smk"
+    config:
+        config
 
 
 module run_eon:
@@ -43,6 +45,9 @@ use rule * from run_eon
 
 
 use rule plot_neb_path from plotting
+rule minimize_all_endpoints:
+    input:
+        expand(f"{config['paths']['endpoints']}/{{endpoint}}.con", endpoint=["reactant", "product"])
 
 
 rule all:

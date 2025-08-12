@@ -5,7 +5,7 @@ rule download_ckpt:
     output:
         # Promise to create a .ckpt file, which is what the URL provides.
         # Mark it as temp() since it is only for the next step.
-        temp("results/pet-mad-{version}.ckpt"),
+        temp(f"{config['paths']['models']}/pet-mad-{{version}}.ckpt"),
     params:
         version="{version}",
     shell:
@@ -17,11 +17,8 @@ rule download_ckpt:
 
 rule convert_ckpt_to_pt:
     input:
-        "results/pet-mad-{version}.ckpt",
+        f"{config['paths']['models']}/pet-mad-{{version}}.ckpt",
     output:
-        protected("results/pet-mad-{version}.pt"),
+        protected(f"{config['paths']['models']}/pet-mad-{{version}}.pt"),
     shell:
-        """
-        mtt export results/pet-mad-{wildcards.version}.ckpt
-        mv pet-mad-{wildcards.version}.pt {output}
-        """
+        "mtt export {input} && mv pet-mad-{wildcards.version}.pt {output}"

@@ -2,6 +2,12 @@ common:
   number_of_intermediate_imgs: 10
   reactant_file: "resources/reactant.con"
   product_file: "resources/product.con"
+paths:
+  models: "results/00_models"
+  endpoints: "results/01_endpoints"
+  idpp: "results/02_idpp"
+  neb: "results/03_neb"
+  plots: "results/04_plots"
 eon:
   config: "resources/config.ini"
   num_steps: 28
