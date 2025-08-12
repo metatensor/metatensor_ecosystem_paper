@@ -19,10 +19,20 @@ module get_petmad:
         "rules/get_petmad.smk"
 
 
+module run_eon:
+    snakefile:
+        "rules/run_eon.smk"
+    config:
+        config
+
+
 use rule * from ase_idpp as __ase_idpp_*
 
 
 use rule * from get_petmad
+
+
+use rule run_eon from run_eon as __run_eon
 
 
 rule doneb:
@@ -38,4 +48,5 @@ rule all:
     input:
         rules.__ase_idpp_collect_paths.output,
         "results/plots/.gitkeep",
+        rules.__run_eon.output,
     default_target: True
