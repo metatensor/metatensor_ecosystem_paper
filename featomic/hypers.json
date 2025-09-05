@@ -1,0 +1,8 @@
+{
+    "n_iters": 50,
+    "max_radial": 6,
+    "max_angular": 6,
+    "cutoff": 5.5,
+    "cutoff_width": 0.5,
+    "atomic_width": 0.3
+}
