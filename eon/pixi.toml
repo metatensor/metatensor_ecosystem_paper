@@ -1,6 +1,6 @@
 [workspace]
 authors = ["Rohit Goswami <rohit.goswami@epfl.ch>"]
-channels = ["metatensor", "https://repo.prefix.dev/rg-forge", "conda-forge"]
+channels = ["metatensor", "https://repo.prefix.dev/rg-forge", "conda-forge", "bioconda"]
 name = "metatensor_ecosystem_paper"
 platforms = ["linux-64"]
 version = "0.1.0"
@@ -32,18 +32,14 @@ depends-on = [
 
 [dependencies]
 python = ">=3.13.5,<3.14"
-uv = ">=0.8.4,<0.9"
+snakemake = ">=9.10.1,<10"
 
 [pypi-dependencies]
 metatrain = ">=2025.8.1, <2026"
 metatensor-torch = ">=0.7.6, <0.8"
 metatomic-torch = ">=0.1.3, <0.2"
 ase = ">=3.25.0, <4"
-rgpycrumbs = { path = "./subrepos/rgpycrumbs", editable=true }
-snakemake = ">=9.9.0, <10"
-
-[activation]
-scripts = ["scripts/env_setup.sh"]
+rgpycrumbs = "==0.0.2"
 
 [feature.eon.dependencies]
 eigen = ">=3.4.0,<4"
