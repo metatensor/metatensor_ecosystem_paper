@@ -32,7 +32,7 @@ calculator = spex.metatensor.SoapPowerSpectrum(
 nl = vesin.torch.NeighborList(cutoff=HYPERS["cutoff"], full_list=True)
 
 
-def compute(calculator, frames, do_grad):
+def compute(calculator, frames, do_grad, device):
     all_rij = []
     all_i = []
     all_j = []
@@ -65,12 +65,12 @@ def compute(calculator, frames, do_grad):
         center.append(torch.arange(len(frame)))
 
     soap = calculator(
-        torch.cat(all_rij),
-        torch.cat(all_i),
-        torch.cat(all_j),
-        torch.cat(all_species),
-        torch.cat(structure),
-        torch.cat(center),
+        torch.cat(all_rij).to(device),
+        torch.cat(all_i).to(device),
+        torch.cat(all_j).to(device),
+        torch.cat(all_species).to(device),
+        torch.cat(structure).to(device),
+        torch.cat(center).to(device),
     )
 
     if do_grad:
@@ -94,14 +94,15 @@ def compute(calculator, frames, do_grad):
 
 
 do_grad = sys.argv[3] == "grad"
+device = sys.argv[4]
 
 # warmup
 for _ in range(3):
-    _ = compute(calculator, frames, do_grad)
+    _ = compute(calculator, frames, do_grad, device)
 
 start = time.time()
 for _ in range(HYPERS["n_iters"]):
-    _ = compute(calculator, frames, do_grad)
+    _ = compute(calculator, frames, do_grad, device)
 stop = time.time()
 print(1e3 * (stop - start) / HYPERS["n_iters"] / n_atoms, "ms/atom")
 

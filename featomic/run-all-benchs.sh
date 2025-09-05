@@ -25,8 +25,11 @@ for file in "molecular_crystals" "silicon_bulk"; do
     printf "\ndscribe w/ gradients\n"
     python bench-dscribe.py hypers.json $file.xyz grad
 
-    printf "\nspex\n"
-    python bench-spex.py hypers.json $file.xyz no_grad
+    printf "\nspex CPU\n"
+    python bench-spex.py hypers.json $file.xyz no_grad cpu
+
+    printf "\nspex CUDA\n"
+    python bench-spex.py hypers.json $file.xyz no_grad cuda
 
     printf "\nfeatomic\n"
     python bench-featomic.py hypers.json $file.xyz no_grad
