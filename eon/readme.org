@@ -13,20 +13,6 @@ workflows of [[https://github.com/amritagos][amritagos]]].
 [[file:resources/dag.svg]]
 
 Essentially this is as implemented from [3] [[https://github.com/TheochemUI/eOn/pull/77][in EON]] (also [[https://github.com/TheochemUI/eOn/pull/230][here]]), using systems from [4].
-** Setup
-Everything is part of the repository, but ~eOn~ needs to be installed.
-#+begin_src bash
-pixi s -e eon
-cd subrepos/eOn
-meson setup --reconfigure bbdir --prefix=$CONDA_PREFIX -Dwith_metatomic=True \
-    -Dpip_metatomic=True -Dtorch_version=2.7 --buildtype release --libdir=lib
-meson install -C bbdir
-#+end_src
-Now everything is ready for reproduction. Several ~pixi~ groups are defined to
-ensure minimal conflits. *None of these contain* ~eOn~ so the instructions above
-need to be followed for each environment where it is necessary.
-*** Development
-~git-subrepo~ is used to handle the vendored dependencies.
 ** Usage
 #+begin_src bash
 pixi s -e eon
